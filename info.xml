@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<extension key="org.civicoop.civivolunteertokens" type="module">
+  <file>civivolunteertokens</file>
+  <name>Tokens for CiviVolunteer</name>
+  <description>Token with Volunteer Roster. The token contains all the shifts the user has signed up to help with. Only future shifts are shown and only of active projects.</description>
+  <license>AGPL-3.0</license>
+  <maintainer>
+    <author>Jaap Jansma</author>
+    <email>jaap@edeveloper.nl</email>
+  </maintainer>
+  <urls>
+    <url desc="Main Extension Page">https://github.com/civicoop/org.civicoop.civivolunteertokens</url>
+    <url desc="Documentation">https://github.com/civicoop/org.civicoop.civivolunteertokens/README.md</url>
+    <url desc="Support">https://www.civicoop.org</url>
+    <url desc="Licensing">http://www.gnu.org/licenses/agpl-3.0.html</url>
+  </urls>
+  <releaseDate>2017-02-03</releaseDate>
+  <version>1.0</version>
+  <develStage>stable</develStage>
+  <compatibility>
+    <ver>4.6</ver>
+    <ver>4.7</ver>
+  </compatibility>
+  <civix>
+    <namespace>CRM/Civivolunteertokens</namespace>
+  </civix>
+</extension>
