@@ -159,6 +159,8 @@ class CRM_Civivolunteertokens_Roster {
     $strContactIds = implode(", ", $contact_ids);
     $sql = "SELECT volunteer_project.title, 
             volunteer_need.start_time, 
+	    volunteer_need.end_time,
+	    volunteer_need.duration,
             volunteer_need.role_id,
             activity_contact.contact_id
             FROM civicrm_activity activity
@@ -178,13 +180,22 @@ class CRM_Civivolunteertokens_Roster {
     $return = array();
     while($dao->fetch()) {
       $startTime = new DateTime($dao->start_time);
+      $strStartTime = $startTime->format('d-m-Y H:i');
+      $strEndTime = '';
+      if (!empty($dao->end_datime)) {
+        $endTime = new DateTime($dao->end_time);
+        $strStartTime .= ' - ' . $endTime->format('H:i');   
+      } elseif (!empty($dao->duration)) {
+        $startTime->modify('+' . $dao->duration.' minutes');
+        $strStartTime .= ' - ' . $startTime->format('H:i');
+      }
       $role = '';
       if (isset($this->roles[$dao->role_id])) {
         $role = $this->roles[$dao->role_id];
       }
       $return[$dao->contact_id][] = array(
         'project' => $dao->title,
-        'start_time' => $startTime->format('d-m-Y H:i'),
+        'start_time' => $strStartTime,
         'role' => $role,
       );
     }
