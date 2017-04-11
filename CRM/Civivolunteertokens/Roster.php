@@ -23,6 +23,9 @@ class CRM_Civivolunteertokens_Roster {
 
   private $roles;
 
+  private $tableAttributes = 'border="0" style="width: 100%; border-collapse: collapse; text-align: left; font-size: 13px; font-family: Arial, Helvetica, sans-serif; color: #3f3f3f;"';
+  private $cellAttributes = 'style="padding: 0.5em 1em 0.5em 0em; width: 33%; border-bottom: 1px dotted silver;"';
+
   private function __construct() {
     $this->activity_type_id = civicrm_api3('OptionValue', 'getvalue', array('return' => 'value', 'option_group_id' => 'activity_type', 'name' => 'Volunteer'));
     $this->civivolunteer_custom_group = civicrm_api3('CustomGroup', 'getsingle', array('name' => 'CiviVolunteer'));
@@ -74,9 +77,9 @@ class CRM_Civivolunteertokens_Roster {
     foreach($contact_ids as $contact_id) {
       $tokenValues[$contact_id] = '';
       if (isset($rosterData[$contact_id])) {
-        $strRoster = '<table><tr><th>'.ts('Project').'</th><th>'.ts('Role').'</th><th>'.ts('Date').'</th></tr>';
+        $strRoster = '<table '.$this->tableAttributes.'><tr><th '.$this->cellAttributes.'>'.ts('Location').'</th><th '.$this->cellAttributes.'>'.ts('Role').'</th><th '.$this->cellAttributes.'>'.ts('Date').'</th></tr>';
         foreach($rosterData[$contact_id] as $rosterLine) {
-          $strRoster .= '<tr><td>'.$rosterLine['project'].'</td><td>'.$rosterLine['role'].'</td><td>'.$rosterLine['start_time'].'</td></tr>';
+          $strRoster .= '<tr><td '.$this->cellAttributes.'>'.$rosterLine['project'].'</td><td '.$this->cellAttributes.'>'.$rosterLine['role'].'</td><td '.$this->cellAttributes.'>'.$rosterLine['start_time'].'</td></tr>';
         }
         $strRoster .= '</table>';
         $tokenValues[$contact_id] = $strRoster;
@@ -97,9 +100,9 @@ class CRM_Civivolunteertokens_Roster {
     foreach($contact_ids as $contact_id) {
       $tokenValues[$contact_id] = '';
       if (isset($rosterData[$contact_id])) {
-        $strRoster = '<table><tr><th>Projet</th><th>Fonction</th><th>Horaires</th></tr>';
+        $strRoster = '<table '.$this->tableAttributes.'><tr><th '.$this->cellAttributes.'>Lieu</th><th '.$this->cellAttributes.'>Fonction</th><th '.$this->cellAttributes.'>Horaires</th></tr>';
         foreach($rosterData[$contact_id] as $rosterLine) {
-          $strRoster .= '<tr><td>'.$rosterLine['project'].'</td><td>'.$rosterLine['role'].'</td><td>'.$rosterLine['start_time'].'</td></tr>';
+          $strRoster .= '<tr><td '.$this->cellAttributes.'>'.$rosterLine['project'].'</td><td '.$this->cellAttributes.'>'.$rosterLine['role'].'</td><td '.$this->cellAttributes.'>'.$rosterLine['start_time'].'</td></tr>';
         }
         $strRoster .= '</table>';
         $tokenValues[$contact_id] = $strRoster;
@@ -120,9 +123,9 @@ class CRM_Civivolunteertokens_Roster {
     foreach($contact_ids as $contact_id) {
       $tokenValues[$contact_id] = '';
       if (isset($rosterData[$contact_id])) {
-        $strRoster = '<table><tr><th>Project</th><th>Functie</th><th>Uurrooster</th></tr>';
+        $strRoster = '<table '.$this->tableAttributes.'><tr><th '.$this->cellAttributes.'>Locatie</th><th '.$this->cellAttributes.'>Functie</th><th '.$this->cellAttributes.'>Uurrooster</th></tr>';
         foreach($rosterData[$contact_id] as $rosterLine) {
-          $strRoster .= '<tr><td>'.$rosterLine['project'].'</td><td>'.$rosterLine['role'].'</td><td>'.$rosterLine['start_time'].'</td></tr>';
+          $strRoster .= '<tr><td '.$this->cellAttributes.'>'.$rosterLine['project'].'</td><td '.$this->cellAttributes.'>'.$rosterLine['role'].'</td><td '.$this->cellAttributes.'>'.$rosterLine['start_time'].'</td></tr>';
         }
         $strRoster .= '</table>';
         $tokenValues[$contact_id] = $strRoster;
@@ -143,9 +146,9 @@ class CRM_Civivolunteertokens_Roster {
     foreach($contact_ids as $contact_id) {
       $tokenValues[$contact_id] = '';
       if (isset($rosterData[$contact_id])) {
-        $strRoster = '<table><tr><th>Projekt</th><th>Funktion</th><th>Zeitplan</th></tr>';
+        $strRoster = '<table '.$this->tableAttributes.'><tr><th '.$this->cellAttributes.'>Ort</th><th '.$this->cellAttributes.'>Funktion</th><th '.$this->cellAttributes.'>Zeitplan</th></tr>';
         foreach($rosterData[$contact_id] as $rosterLine) {
-          $strRoster .= '<tr><td>'.$rosterLine['project'].'</td><td>'.$rosterLine['role'].'</td><td>'.$rosterLine['start_time'].'</td></tr>';
+          $strRoster .= '<tr><td '.$this->cellAttributes.'>'.$rosterLine['project'].'</td><td '.$this->cellAttributes.'>'.$rosterLine['role'].'</td><td '.$this->cellAttributes.'>'.$rosterLine['start_time'].'</td></tr>';
         }
         $strRoster .= '</table>';
         $tokenValues[$contact_id] = $strRoster;
@@ -198,6 +201,13 @@ class CRM_Civivolunteertokens_Roster {
         'start_time' => $strStartTime,
         'role' => $role,
       );
+    }
+    foreach($contact_ids as $contact_id) {
+        $return[$contact_id][] = array(
+            'project' => 'jaap',
+            'start_time' => '10 am till 12pm',
+            'role' => 'hhhhh ahhh ahh',
+        );
     }
     return $return;
   }
