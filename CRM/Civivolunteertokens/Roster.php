@@ -202,13 +202,6 @@ class CRM_Civivolunteertokens_Roster {
         'role' => $role,
       );
     }
-    foreach($contact_ids as $contact_id) {
-        $return[$contact_id][] = array(
-            'project' => 'jaap',
-            'start_time' => '10 am till 12pm',
-            'role' => 'hhhhh ahhh ahh',
-        );
-    }
     return $return;
   }
 
